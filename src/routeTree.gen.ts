@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CataloguesRouteImport } from './routes/catalogues'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CataloguesIndexRouteImport } from './routes/catalogues.index'
 
 const CataloguesRoute = CataloguesRouteImport.update({
   id: '/catalogues',
@@ -28,35 +29,42 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CataloguesIndexRoute = CataloguesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CataloguesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/catalogues': typeof CataloguesRoute
+  '/catalogues': typeof CataloguesRouteWithChildren
+  '/catalogues/': typeof CataloguesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/catalogues': typeof CataloguesRoute
+  '/catalogues': typeof CataloguesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/catalogues': typeof CataloguesRoute
+  '/catalogues': typeof CataloguesRouteWithChildren
+  '/catalogues/': typeof CataloguesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/catalogues'
+  fullPaths: '/' | '/about' | '/catalogues' | '/catalogues/'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/about' | '/catalogues'
-  id: '__root__' | '/' | '/about' | '/catalogues'
+  id: '__root__' | '/' | '/about' | '/catalogues' | '/catalogues/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  CataloguesRoute: typeof CataloguesRoute
+  CataloguesRoute: typeof CataloguesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +90,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalogues/': {
+      id: '/catalogues/'
+      path: '/'
+      fullPath: '/catalogues/'
+      preLoaderRoute: typeof CataloguesIndexRouteImport
+      parentRoute: typeof CataloguesRoute
+    }
   }
 }
+
+interface CataloguesRouteChildren {
+  CataloguesIndexRoute: typeof CataloguesIndexRoute
+}
+
+const CataloguesRouteChildren: CataloguesRouteChildren = {
+  CataloguesIndexRoute: CataloguesIndexRoute,
+}
+
+const CataloguesRouteWithChildren = CataloguesRoute._addFileChildren(
+  CataloguesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  CataloguesRoute: CataloguesRoute,
+  CataloguesRoute: CataloguesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
