@@ -9,38 +9,136 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as CataloguesRouteImport } from './routes/catalogues'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CataloguesIndexRouteImport } from './routes/catalogues.index'
+import { Route as CataloguesLaptopsRouteImport } from './routes/catalogues.laptops'
+import { Route as CataloguesConsolesRouteImport } from './routes/catalogues.consoles'
 
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CataloguesRoute = CataloguesRouteImport.update({
+  id: '/catalogues',
+  path: '/catalogues',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CataloguesIndexRoute = CataloguesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CataloguesRoute,
+} as any)
+const CataloguesLaptopsRoute = CataloguesLaptopsRouteImport.update({
+  id: '/laptops',
+  path: '/laptops',
+  getParentRoute: () => CataloguesRoute,
+} as any)
+const CataloguesConsolesRoute = CataloguesConsolesRouteImport.update({
+  id: '/consoles',
+  path: '/consoles',
+  getParentRoute: () => CataloguesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/catalogues': typeof CataloguesRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
+  '/catalogues/laptops': typeof CataloguesLaptopsRoute
+  '/catalogues/': typeof CataloguesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/reviews': typeof ReviewsRoute
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
+  '/catalogues/laptops': typeof CataloguesLaptopsRoute
+  '/catalogues': typeof CataloguesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/catalogues': typeof CataloguesRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
+  '/catalogues/laptops': typeof CataloguesLaptopsRoute
+  '/catalogues/': typeof CataloguesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/catalogues'
+    | '/reviews'
+    | '/catalogues/consoles'
+    | '/catalogues/laptops'
+    | '/catalogues/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/reviews'
+    | '/catalogues/consoles'
+    | '/catalogues/laptops'
+    | '/catalogues'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/catalogues'
+    | '/reviews'
+    | '/catalogues/consoles'
+    | '/catalogues/laptops'
+    | '/catalogues/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CataloguesRoute: typeof CataloguesRouteWithChildren
+  ReviewsRoute: typeof ReviewsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogues': {
+      id: '/catalogues'
+      path: '/catalogues'
+      fullPath: '/catalogues'
+      preLoaderRoute: typeof CataloguesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +146,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalogues/': {
+      id: '/catalogues/'
+      path: '/'
+      fullPath: '/catalogues/'
+      preLoaderRoute: typeof CataloguesIndexRouteImport
+      parentRoute: typeof CataloguesRoute
+    }
+    '/catalogues/laptops': {
+      id: '/catalogues/laptops'
+      path: '/laptops'
+      fullPath: '/catalogues/laptops'
+      preLoaderRoute: typeof CataloguesLaptopsRouteImport
+      parentRoute: typeof CataloguesRoute
+    }
+    '/catalogues/consoles': {
+      id: '/catalogues/consoles'
+      path: '/consoles'
+      fullPath: '/catalogues/consoles'
+      preLoaderRoute: typeof CataloguesConsolesRouteImport
+      parentRoute: typeof CataloguesRoute
+    }
   }
 }
 
+interface CataloguesRouteChildren {
+  CataloguesConsolesRoute: typeof CataloguesConsolesRoute
+  CataloguesLaptopsRoute: typeof CataloguesLaptopsRoute
+  CataloguesIndexRoute: typeof CataloguesIndexRoute
+}
+
+const CataloguesRouteChildren: CataloguesRouteChildren = {
+  CataloguesConsolesRoute: CataloguesConsolesRoute,
+  CataloguesLaptopsRoute: CataloguesLaptopsRoute,
+  CataloguesIndexRoute: CataloguesIndexRoute,
+}
+
+const CataloguesRouteWithChildren = CataloguesRoute._addFileChildren(
+  CataloguesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CataloguesRoute: CataloguesRouteWithChildren,
+  ReviewsRoute: ReviewsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
