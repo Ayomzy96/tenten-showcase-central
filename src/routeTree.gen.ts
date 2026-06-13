@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CataloguesIndexRouteImport } from './routes/catalogues.index'
 import { Route as CataloguesLaptopsRouteImport } from './routes/catalogues.laptops'
+import { Route as CataloguesConsolesRouteImport } from './routes/catalogues.consoles'
 
 const CataloguesRoute = CataloguesRouteImport.update({
   id: '/catalogues',
@@ -40,17 +41,24 @@ const CataloguesLaptopsRoute = CataloguesLaptopsRouteImport.update({
   path: '/laptops',
   getParentRoute: () => CataloguesRoute,
 } as any)
+const CataloguesConsolesRoute = CataloguesConsolesRouteImport.update({
+  id: '/consoles',
+  path: '/consoles',
+  getParentRoute: () => CataloguesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/catalogues': typeof CataloguesRouteWithChildren
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues/': typeof CataloguesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues': typeof CataloguesIndexRoute
 }
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/catalogues': typeof CataloguesRouteWithChildren
+  '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues/': typeof CataloguesIndexRoute
 }
@@ -68,15 +77,22 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/catalogues'
+    | '/catalogues/consoles'
     | '/catalogues/laptops'
     | '/catalogues/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/catalogues/laptops' | '/catalogues'
+  to:
+    | '/'
+    | '/about'
+    | '/catalogues/consoles'
+    | '/catalogues/laptops'
+    | '/catalogues'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/catalogues'
+    | '/catalogues/consoles'
     | '/catalogues/laptops'
     | '/catalogues/'
   fileRoutesById: FileRoutesById
@@ -124,15 +140,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CataloguesLaptopsRouteImport
       parentRoute: typeof CataloguesRoute
     }
+    '/catalogues/consoles': {
+      id: '/catalogues/consoles'
+      path: '/consoles'
+      fullPath: '/catalogues/consoles'
+      preLoaderRoute: typeof CataloguesConsolesRouteImport
+      parentRoute: typeof CataloguesRoute
+    }
   }
 }
 
 interface CataloguesRouteChildren {
+  CataloguesConsolesRoute: typeof CataloguesConsolesRoute
   CataloguesLaptopsRoute: typeof CataloguesLaptopsRoute
   CataloguesIndexRoute: typeof CataloguesIndexRoute
 }
 
 const CataloguesRouteChildren: CataloguesRouteChildren = {
+  CataloguesConsolesRoute: CataloguesConsolesRoute,
   CataloguesLaptopsRoute: CataloguesLaptopsRoute,
   CataloguesIndexRoute: CataloguesIndexRoute,
 }
