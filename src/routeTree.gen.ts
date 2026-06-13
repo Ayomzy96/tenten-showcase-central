@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as CataloguesRouteImport } from './routes/catalogues'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -16,6 +17,11 @@ import { Route as CataloguesIndexRouteImport } from './routes/catalogues.index'
 import { Route as CataloguesLaptopsRouteImport } from './routes/catalogues.laptops'
 import { Route as CataloguesConsolesRouteImport } from './routes/catalogues.consoles'
 
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CataloguesRoute = CataloguesRouteImport.update({
   id: '/catalogues',
   path: '/catalogues',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/catalogues': typeof CataloguesRouteWithChildren
+  '/reviews': typeof ReviewsRoute
   '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues/': typeof CataloguesIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/reviews': typeof ReviewsRoute
   '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues': typeof CataloguesIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/catalogues': typeof CataloguesRouteWithChildren
+  '/reviews': typeof ReviewsRoute
   '/catalogues/consoles': typeof CataloguesConsolesRoute
   '/catalogues/laptops': typeof CataloguesLaptopsRoute
   '/catalogues/': typeof CataloguesIndexRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/catalogues'
+    | '/reviews'
     | '/catalogues/consoles'
     | '/catalogues/laptops'
     | '/catalogues/'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/reviews'
     | '/catalogues/consoles'
     | '/catalogues/laptops'
     | '/catalogues'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/catalogues'
+    | '/reviews'
     | '/catalogues/consoles'
     | '/catalogues/laptops'
     | '/catalogues/'
@@ -101,10 +113,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CataloguesRoute: typeof CataloguesRouteWithChildren
+  ReviewsRoute: typeof ReviewsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalogues': {
       id: '/catalogues'
       path: '/catalogues'
@@ -170,6 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CataloguesRoute: CataloguesRouteWithChildren,
+  ReviewsRoute: ReviewsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
