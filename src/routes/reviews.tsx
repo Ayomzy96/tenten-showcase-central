@@ -21,7 +21,7 @@ export const Route = createFileRoute("/reviews")({
   component: Reviews,
 });
 
-type Review = { id: string; name: string; rating: number; comment: string; created_at: string };
+type Review = { id: string; name: string; rating: number; review: string; created_at: string };
 
 function Stars({ value, onChange }: { value: number; onChange?: (n: number) => void }) {
   return (
