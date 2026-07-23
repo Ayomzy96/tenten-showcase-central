@@ -33,9 +33,10 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +254 700 000 000</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> hello@tentencomputers.com</li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Nairobi, Kenya</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +234 816 577 3599</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +234 815 045 1526</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> tentencomputers@gmail.com</li>
+            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Nigeria</li>
           </ul>
           <div className="mt-4 flex gap-3">
             <a href="#" className="rounded-full bg-secondary p-2 hover:bg-primary hover:text-primary-foreground transition"><Facebook className="h-4 w-4" /></a>
@@ -45,7 +46,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-border/50 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Tenten Computers. All rights reserved.
+        © {new Date().getFullYear()} Tenten Computers. Registered company. All rights reserved.
       </div>
     </footer>
   );
