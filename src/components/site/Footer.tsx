@@ -7,9 +7,6 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-lg text-primary-foreground font-bold" style={{ background: "var(--gradient-primary)" }}>
-              10
-            </span>
             <span className="text-lg font-bold">Tenten Computers</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
