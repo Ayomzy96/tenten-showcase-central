@@ -21,7 +21,7 @@ export const Route = createFileRoute("/reviews")({
   component: Reviews,
 });
 
-type Review = { id: string; name: string; rating: number; review: string; created_at: string };
+type Review = { id: string; name: string; rating: number; comment: string; created_at: string };
 
 function Stars({ value, onChange }: { value: number; onChange?: (n: number) => void }) {
   return (
@@ -68,7 +68,7 @@ function Reviews() {
       if (!trimmedReview || trimmedReview.length > 1000) throw new Error("Enter a review (max 1000 chars).");
       const { error } = await supabase.from("reviews").insert({
         name: trimmedName,
-        review: trimmedReview,
+        comment: trimmedReview,
         rating,
       });
       if (error) throw error;
@@ -109,7 +109,7 @@ function Reviews() {
                   <span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString()}</span>
                 </div>
                 <div className="mt-1"><Stars value={r.rating} /></div>
-                <p className="mt-3 text-sm text-foreground/90">{r.review}</p>
+                <p className="mt-3 text-sm text-foreground/90">{r.comment}</p>
               </article>
             ))}
           </div>
