@@ -45,7 +45,7 @@ function Stars({ value, onChange }: { value: number; onChange?: (n: number) => v
 function Reviews() {
   const qc = useQueryClient();
   const [name, setName] = useState("");
-  const [comment, setComment] = useState("");
+  const [review, setReview] = useState("");
   const [rating, setRating] = useState(5);
 
   const { data: reviews = [], isLoading } = useQuery({
@@ -63,12 +63,12 @@ function Reviews() {
   const mutation = useMutation({
     mutationFn: async () => {
       const trimmedName = name.trim();
-      const trimmedComment = comment.trim();
+      const trimmedReview = review.trim();
       if (!trimmedName || trimmedName.length > 100) throw new Error("Enter your name (max 100 chars).");
-      if (!trimmedComment || trimmedComment.length > 1000) throw new Error("Enter a review (max 1000 chars).");
+      if (!trimmedReview || trimmedReview.length > 1000) throw new Error("Enter a review (max 1000 chars).");
       const { error } = await supabase.from("reviews").insert({
         name: trimmedName,
-        comment: trimmedComment,
+        review: trimmedReview,
         rating,
       });
       if (error) throw error;
@@ -76,7 +76,7 @@ function Reviews() {
     onSuccess: () => {
       toast.success("Thanks for your review!");
       setName("");
-      setComment("");
+      setReview("");
       setRating(5);
       qc.invalidateQueries({ queryKey: ["reviews"] });
     },
@@ -109,7 +109,7 @@ function Reviews() {
                   <span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString()}</span>
                 </div>
                 <div className="mt-1"><Stars value={r.rating} /></div>
-                <p className="mt-3 text-sm text-foreground/90">{r.comment}</p>
+                <p className="mt-3 text-sm text-foreground/90">{r.review}</p>
               </article>
             ))}
           </div>
@@ -133,8 +133,8 @@ function Reviews() {
               <div className="mt-2"><Stars value={rating} onChange={setRating} /></div>
             </div>
             <div>
-              <Label htmlFor="comment">Review</Label>
-              <Textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)} maxLength={1000} placeholder="Tell us about your experience…" rows={5} required />
+              <Label htmlFor="review">Review</Label>
+              <Textarea id="review" value={review} onChange={(e) => setReview(e.target.value)} maxLength={1000} placeholder="Tell us about your experience…" rows={5} required />
             </div>
             <Button type="submit" disabled={mutation.isPending} className="w-full">
               {mutation.isPending ? "Submitting…" : "Submit Review"}
