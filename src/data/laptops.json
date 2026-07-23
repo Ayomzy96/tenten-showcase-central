@@ -1,0 +1,158 @@
+[
+  {
+    "model": "Dell latitude",
+    "specs": [
+      "Intel core i5",
+      "webcam",
+      "8gb ram",
+      "320gb storage",
+      "keyboard light"
+    ],
+    "price": 180000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/dell%20latitude/IMG-20240921-WA0042.jpg"
+  },
+  {
+    "model": "lenovo Thinkpad",
+    "specs": [
+      "intel core i5",
+      "webcam",
+      "8gb ram",
+      "256gb ssd",
+      "keyboardlight"
+    ],
+    "price": 180000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/lenovo%20thinkpad/20250711_180913.jpg"
+  },
+  {
+    "model": "Hp probook 430",
+    "specs": [
+      "intel core i3 6th gen",
+      "webcam",
+      "8gb ram",
+      "256gb ssd",
+      "keyboard light"
+    ],
+    "price": 200000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/hp%20g3%20portable/IMG-20250506-WA0018.jpg"
+  },
+  {
+    "model": "Acer travel mate",
+    "specs": [
+      "intel core i5",
+      "8GB RAM",
+      "256GB"
+    ],
+    "price": 130000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/Acer%20travelmate/20250711_182207.jpg"
+  },
+  {
+    "model": "Dell latitude 3180",
+    "specs": [
+      "intel celeron",
+      "4gb ram",
+      "128gb ssd"
+    ],
+    "price": 130000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1772372374971_IMG_1352.jpg"
+  },
+  {
+    "model": "Acer aspire",
+    "specs": [
+      "Intel core i5",
+      "webcam",
+      "8gb ram",
+      "320gb storage"
+    ],
+    "price": 130000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1755415953801_20250817_073021.jpg"
+  },
+  {
+    "model": "Lenovo z500",
+    "specs": [
+      "intel core i5 3rd gen| 8gb ram| webcam|500gb storage| keyboardlight| 1gb dedicated graphics"
+    ],
+    "price": 180000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1761290334947_20251017_221134.jpg"
+  },
+  {
+    "model": "Toshiba Satellite",
+    "specs": [
+      "Intel core i3",
+      "webcam",
+      "8gb ram",
+      "320gb hdd"
+    ],
+    "price": 100000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/Toshiba%20satellite/IMG-20250504-WA0048.jpg"
+  },
+  {
+    "model": "Acer travel mate",
+    "specs": [
+      "Intel core i5",
+      "webcam",
+      "8gb ram'",
+      "320gb storage"
+    ],
+    "price": 150000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1772372659187_IMG-20251110-WA0019.jpg"
+  },
+  {
+    "model": "Hp probook",
+    "specs": [
+      "Intel core i5 4th gen",
+      "8gb ram",
+      "500gb storage",
+      "keyboard light"
+    ],
+    "price": 200000.0,
+    "inStock": true,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1772957175092_probook%202.jpg"
+  },
+  {
+    "model": "Hp pavilion 15 Gaming",
+    "specs": [
+      "Intel core i5 7th generation",
+      "webcam",
+      "16gb ram",
+      "128gb ssd+500gb hdd storage",
+      "Nvidia GTX 940MX(2gb)"
+    ],
+    "price": 350000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1755417475801_20250817_072856.jpg"
+  },
+  {
+    "model": "Sony vaio(Touchscreen)",
+    "specs": [
+      "Intel core i5",
+      "webcam",
+      "8gb ram",
+      "500gb storage"
+    ],
+    "price": 150000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1754546387045_20250803_171057.jpg"
+  },
+  {
+    "model": "Hp 450 g3",
+    "specs": [
+      "intel core i5 6th gen",
+      "webcam",
+      "8gb ram",
+      "128gb ssd",
+      "keyboard light"
+    ],
+    "price": 180000.0,
+    "inStock": false,
+    "image": "https://kdijhjnkxkrfjlyavcoe.supabase.co/storage/v1/object/public/product-images/public/1756735731349_d53d5f09145a4949acd2943425cc3ed0.jpg"
+  }
+]
