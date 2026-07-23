@@ -35,6 +35,9 @@ function About() {
             <p className="mt-4 text-muted-foreground">
               Whether you're a student, a creator, a gamer or a small business, we'll help you find the right gear at the right price — and we'll be here long after the sale.
             </p>
+            <p className="mt-4 text-sm font-medium text-primary">
+              Tenten Computers is a registered company.
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
