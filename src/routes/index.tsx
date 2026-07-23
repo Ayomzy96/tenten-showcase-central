@@ -8,8 +8,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Tenten Computers — Laptops, Consoles & Accessories" },
       { name: "description", content: "Tenten Computers sells premium laptops, game consoles, and computer accessories with trusted warranty and fast delivery." },
-      { property: "og:title", content: "Tenten Computers" },
-      { property: "og:description", content: "Premium laptops, game consoles, and computer accessories." },
+      { property: "og:title", content: "Tenten Computers — Laptops, Consoles & Accessories" },
+      { property: "og:description", content: "Tenten Computers sells premium laptops, game consoles, and computer accessories with trusted warranty and fast delivery." },
     ],
   }),
   component: Index,

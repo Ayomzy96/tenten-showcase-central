@@ -80,14 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Tenten Computers — Laptops, Consoles & Accessories" },
+      { name: "description", content: "Tenten Computers sells premium laptops, game consoles, and computer accessories with trusted warranty and fast delivery." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Tenten Computers — Laptops, Consoles & Accessories" },
+      { property: "og:description", content: "Tenten Computers sells premium laptops, game consoles, and computer accessories with trusted warranty and fast delivery." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Tenten Computers — Laptops, Consoles & Accessories" },
+      { name: "twitter:description", content: "Tenten Computers sells premium laptops, game consoles, and computer accessories with trusted warranty and fast delivery." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3290c524-328a-4d61-88ae-587bf47eee4d/id-preview-b047ec61--fdff0f29-9a4d-4f1d-bf4d-bad7538babca.lovable.app-1784816138619.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3290c524-328a-4d61-88ae-587bf47eee4d/id-preview-b047ec61--fdff0f29-9a4d-4f1d-bf4d-bad7538babca.lovable.app-1784816138619.png" },
     ],
     links: [
       {
